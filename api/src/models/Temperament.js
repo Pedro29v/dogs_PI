@@ -6,7 +6,7 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('Temperament', {
 
-    ID: {
+    id: {
       type: DataTypes.UUID,
       allowNull:false,
       primaryKey:true,

@@ -6,7 +6,7 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('Dog', {
 
-    ID: {
+    id: {
       type: DataTypes.UUID,
       allowNull:false,
       primaryKey:true,
@@ -30,7 +30,7 @@ module.exports = (sequelize) => {
       allowNull:false
     },
 
-    lifeSpan:{
+    life_span:{
       type:DataTypes.STRING,
     },
 
