@@ -15,12 +15,11 @@ function OrderAlf() {
 
   return (
     <div>
-          <select  onChange={e=> handleOrdenar(e)}>
-            <option value='order'>Order</option>
-            <option value='asc'> A a Z  </option>
-            <option value='desc'> Z a A  </option>
-
-          </select>
+      <select  onChange={e=> handleOrdenar(e)}>
+        <option value='order'>Order By Alphabetically</option>
+        <option value='asc'> A a Z  </option>
+        <option value='desc'> Z a A  </option>
+     </select>
     </div>
   )
 }

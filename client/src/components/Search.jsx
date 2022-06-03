@@ -2,7 +2,7 @@ import React,{useState,useEffect} from 'react';
 import { useDispatch} from 'react-redux';
 import {filterByName} from '../redux/actions/actions'
 
-function Search({current,set}) {
+function Search({set}) {
 
 const [nameDogy, setNameDogy] = useState('');
 const dispatch = useDispatch();
@@ -12,11 +12,11 @@ const handleChange = (e) => {
     setNameDogy(e.target.value)
 }
 
-let valor = '';
+let button = '';
 if(nameDogy!==''){
-    valor = 'Search';
+    button = 'Search';
 }else{
-    valor = 'Home';
+    button = 'Home';
 }
 
 /* useEffect(()=>{
@@ -28,15 +28,17 @@ if(nameDogy!==''){
 
 const handleSubmit = (e) => {
     e.preventDefault()
+
     dispatch( filterByName(nameDogy))
     set(1)
+
 }
 
   return (
     <div>
         <form onSubmit={handleSubmit}>
             <input type='search' value={nameDogy} placeholder='Search Breed' onChange={handleChange}/>
-            <input type='submit' value={valor} />
+            <input type='submit' value={button} />
         </form>
     </div>
   )

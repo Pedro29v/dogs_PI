@@ -2,8 +2,11 @@ import React,{ useEffect,useState } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import {getAllDogs} from '../redux/actions/actions';
 import OrderAlf from './OrderAlf';
+import OrderByWeight from './OrderByWeight';
 import Search from './Search';
 import Card from './Card'
+import OrderByOrigin from './OrderByOrigin';
+import FilterTemp from './FilterTemp';
 
 
 function Home() {
@@ -38,8 +41,11 @@ useEffect(() => {
     <div>
       <h1>ESTAS EN HOME</h1>
 
-      <Search current={currentPage} set={setCurrentpage} />
+      <Search set={setCurrentpage} />
       <OrderAlf />
+      <OrderByOrigin set={setCurrentpage}/>
+      <FilterTemp />
+      <OrderByWeight set={setCurrentpage}/>
       <button onClick={() => prev()} >Prev </button>
       <span>{currentPage +' de '+ pageLimit}</span>
       <button onClick={() => next()} >Next </button>

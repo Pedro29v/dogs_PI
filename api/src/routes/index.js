@@ -15,7 +15,7 @@ const router = Router();
 
 router.post('/dog', async (req, res, next) => {
 
-    const {name,height,weight,life_span,image,tempName} = req.body;
+    const {name,height,weight,life_span,image,temperament} = req.body;
     let nameUpper = name[0].toUpperCase() + name.substring(1)
 
     try {
@@ -29,19 +29,21 @@ router.post('/dog', async (req, res, next) => {
             image
         });
 
-        for(i=0; i < tempName.length; i++){
+       let upperTemp = temperament.map(e => e[0].toUpperCase()+e.substring(1))
+
+        for(i=0; i < upperTemp.length; i++){
 
             let temp =await  Temperament.findAll({
                 where:{
-                    tempName:tempName[i]
+                    temperament:upperTemp[i]
                 }
             });
-    
+
             if(temp.length === 0 ){
     
                 temp = await Temperament.create({
                 
-                    tempName:tempName[i]
+                    temperament:upperTemp[i]
                 })
             }
     
@@ -54,8 +56,6 @@ router.post('/dog', async (req, res, next) => {
         next(error)
     }
 });
-
-//Filtrado por nombre------------------------------------------------------------
 
 //Me traigo todas las razas de perros y tambien filtro por nombre-----------------------------------------
 
@@ -90,7 +90,7 @@ router.get('/home', async(req, res, next) => {
         name:dogiBD[i].name,
         id:dogiBD[i].id,
         image:dogiBD[i].image,
-        temperament:dogiBD[i].Temperaments.map(e => e.tempName).join(', ')
+        temperament:dogiBD[i].Temperaments.map(e => e.temperament).join(', ')
      }
       dogiBDNuevo.push(doginho)
     }
@@ -100,7 +100,8 @@ router.get('/home', async(req, res, next) => {
     
     if(name){
         const namelower = name.toLowerCase();
-        const nameDog= namelower[0].toUpperCase() + namelower.substring(1);
+        const separado = namelower.split(' ')
+        const nameDog= separado.map(p => p[0].toUpperCase() + p.substring(1)).join(' ')
 
         let filtrado = allRazas.filter(e => {
 
@@ -108,7 +109,7 @@ router.get('/home', async(req, res, next) => {
         });
                        
         if(filtrado.length === 0){
-            return  res.status(400).send('Dog not found')
+            return  res.status(400).send('DOG NOT FOUND')
         }
         
       return  res.status(200).json(filtrado);
@@ -156,7 +157,7 @@ let tempBD = async () => {
 
           await  Temperament.create({
     
-                tempName:e
+            temperament:e
             })     
         })
         
@@ -172,8 +173,8 @@ router.get('/home/temperament', async (req,res,next) => {
 try {
 
         let temp = await Temperament.findAll({
-            attributes:['id','tempName'],
-            order: [['tempName', 'ASC']]
+            attributes:['id','temperament'],
+            order: [['temperament', 'ASC']]
         });
         res.status(200).json(temp)
 

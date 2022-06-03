@@ -13,7 +13,7 @@ module.exports = (sequelize) => {
       defaultValue:uuidv4
     },
 
-    tempName:{
+    temperament:{
       type:DataTypes.STRING,
       unique:true,
       allowNull: false
