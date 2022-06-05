@@ -1,7 +1,7 @@
 import React,{useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector} from 'react-redux';
-import {getDogyDetail} from '../redux/actions/actions.js';
+import {getDogyDetail,resetState} from '../redux/actions/actions.js';
 
 const Detail = (props) => {
 
@@ -12,11 +12,10 @@ const Detail = (props) => {
     useEffect(()=>{
 
         dispatch( getDogyDetail(ID))
-
+        dispatch(resetState(resetState))
     },[dispatch,ID])
 
   return (
-
     <div key={id}>
       <Link to={`/home`}><button>Close</button></Link>
       <p>Name: {name}</p>

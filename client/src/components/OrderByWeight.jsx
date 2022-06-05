@@ -1,14 +1,10 @@
-import React,{useEffect} from 'react';
+import React from 'react';
 import { useDispatch} from 'react-redux';
 import {sortWeight,getAllDogs} from '../redux/actions/actions'
 
 function OrderByWeight({set}) {
    
     const dispatch = useDispatch();
-
-/*     useEffect( ()=> {
-      dispatch(getAllDogs())
-  },[dispatch]) */
     
     const handlerWeitgh =(e)=> {
         e.preventDefault();  

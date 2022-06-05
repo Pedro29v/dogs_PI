@@ -24,6 +24,12 @@ export const getDogyDetail = (id) => {
         }
  }
 
+ export function resetState(){
+    return {
+        type:"RES_STATE",
+    }
+}
+
  export const filterByName = (name) => {
 
     return async function(dispatch){
@@ -85,5 +91,18 @@ export function filterTemperament(payload){
     return {
         type:"FILTER_TEMPERAMENT",
         payload,
+    }
+}
+
+export function postDogs(payload){
+    return async function(){
+        try{
+            const createDogy = await axios.post('http://localhost:3001/dog',payload);
+            alert('Breed of Dog successfully created')
+            return createDogy;
+        }catch (error) {
+            let err = error.response.data
+            return alert(err)
+        }
     }
 }

@@ -57,7 +57,7 @@ useEffect(() => {
            name={e.name}
            weight={e.weight}
            temperament={e.temperament}
-           image={e.image}
+           image={e.image }
           />
        ))
      }

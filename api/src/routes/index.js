@@ -15,42 +15,63 @@ const router = Router();
 
 router.post('/dog', async (req, res, next) => {
 
-    const {name,height,weight,life_span,image,temperament} = req.body;
-    let nameUpper = name[0].toUpperCase() + name.substring(1)
+    const {name,
+        heightMin,
+        heightMax,
+        weightMin,
+        weightMax,
+        life_span_min,
+        life_span_max,
+        image,
+        temperament}
+     = req.body;
+    let height = heightMin +'-'+ heightMax;
+    let weight = weightMin +'-'+ weightMax;
+    let life_span = life_span_min +'-'+ life_span_max;
+    let nameLower = name.toLowerCase()
+    let nameUpper = nameLower[0].toUpperCase() + nameLower.substring(1)
 
     try {
+
+        let dogyDataBase = await Dog.findAll({where:{name:nameUpper}});
+        console.log(dogyDataBase)
+        if(dogyDataBase.length > 0){
+            return  res.status(400).json("La raza ya existe");
+        }else{
+            const newDog = await Dog.create({     
         
-        const newDog = await Dog.create({
-           
-            name:nameUpper,
-            height,
-            weight,
-            life_span,
-            image
-        });
-
-       let upperTemp = temperament.map(e => e[0].toUpperCase()+e.substring(1))
-
-        for(i=0; i < upperTemp.length; i++){
-
-            let temp =await  Temperament.findAll({
-                where:{
-                    temperament:upperTemp[i]
-                }
+                name:nameUpper,
+                height,
+                weight,
+                life_span,
+                image
             });
-
-            if(temp.length === 0 ){
     
-                temp = await Temperament.create({
-                
-                    temperament:upperTemp[i]
-                })
+           let upperTemp = temperament.map(e => e[0].toUpperCase()+e.substring(1))
+    
+            for(i=0; i < upperTemp.length; i++){
+    
+                let temp =await  Temperament.findAll({
+                    where:{
+                        temperament:upperTemp[i]
+                    }
+                });
+    
+                if(temp.length === 0 ){
+        
+                    temp = await Temperament.create({
+                    
+                        temperament:upperTemp[i]
+                    })
+                }
+        
+               await newDog.addTemperament(temp);
             }
-    
-           await newDog.addTemperament(temp);
+        
+            res.status(200).json("The new breed was successfully created");
         }
-    
-        res.status(200).json("La nueva raza fue creada existosamente");
+        
+        
 
     } catch (error) {
         next(error)
@@ -63,7 +84,9 @@ router.get('/home', async(req, res, next) => {
 
     try {
 
-        let dogApi = (await axios(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`)).data;
+        let dogAp = (await axios(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`)).data;
+
+        let dogApi =  dogAp.filter(e => parseInt(e.weight.metric))
         
         let razas = [];
 
@@ -72,7 +95,7 @@ router.get('/home', async(req, res, next) => {
                 id:dogApi[i].id,
                 name:dogApi[i].name,
                 height:dogApi[i].height.metric,
-                weight:dogApi[i].weight.metric,
+                weight:dogApi[i].weight.metric ,
                 temperament:dogApi[i].temperament,
                 lifeSpan:dogApi[i].life_span,
                 image:dogApi[i].image.url
@@ -125,10 +148,9 @@ router.get('/home', async(req, res, next) => {
 
 //Temperamentos-------------------------------------------------------------
 
-let tempBD = async () => {
+       (async function() {
 
     try {
-
         let dogs = (await axios(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`)).data;
         let temps = [];
         let aux = '';
@@ -156,20 +178,17 @@ let tempBD = async () => {
          filtradoEnd.forEach(async e => {
 
           await  Temperament.create({
-    
-            temperament:e
+                temperament:e
             })     
         })
         
     } catch (error) {
         next(error)   
     }
-}
-
-tempBD()
+})()
 
 router.get('/home/temperament', async (req,res,next) => {
-   
+
 try {
 
         let temp = await Temperament.findAll({
@@ -184,7 +203,7 @@ try {
 
 })
 
-//Filtrado por ID-----------------------------------------------------------
+//Filtrado por ID-------------------------------------------------------
 
 router.get('/home/:id',async (req,res,next) => {
 
@@ -193,7 +212,6 @@ router.get('/home/:id',async (req,res,next) => {
         const {id} = req.params;
         let dogyApi = (await axios(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`)).data;
         let dogyBD = await Dog.findAll({include:Temperament});
-        //let allDogys = dogyApi.concat(dogyBD);
         let dogFound = ''
 
         if(id.length < 4){
@@ -225,7 +243,7 @@ router.get('/home/:id',async (req,res,next) => {
                         weight:e.weight,
                         life_span:e.life_span,
                         image:e.image,
-                        temperament:e.Temperaments.map(e => e.tempName).join(', ')
+                        temperament:e.Temperaments.map(e => e.temperament).join(', ')
     
                     }
                 }

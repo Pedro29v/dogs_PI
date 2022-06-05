@@ -23,6 +23,12 @@ const rootReducer = (state = initialState, action) => {
       dogDetail:action.payload
     }
 
+    case 'RES_STATE':
+      return{
+          ...state,
+          dogDetail: []
+      }
+
     case 'FILTER_BY_NAME': return{
       ...state,
       dogs: action.payload
@@ -46,8 +52,10 @@ const rootReducer = (state = initialState, action) => {
         return{
          ...state, 
           dogs: [...state.dogs].sort((a, b) => {
-            let weightA= parseInt(a.weight.split('-')[0]);
-            let weightB= parseInt(b.weight.split('-')[0]);   
+
+
+            let weightA= parseInt(a.weight.split('-')[0]) 
+            let weightB= parseInt(b.weight.split('-')[0]) 
  
             if(weightA > weightB) return 1;
             if(weightA < weightB) return -1;
