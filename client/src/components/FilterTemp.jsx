@@ -1,6 +1,7 @@
 import { React, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getTemperaments, filterTemperament } from "../redux/actions/actions";
+import './select.css'
 
 function FilterTemp() {
 
@@ -16,7 +17,7 @@ function FilterTemp() {
     }
 
   return (
-    <div>
+    <div className="container-select"> 
         <select onChange={e=> handleFilterTemperaments(e)}>
             <option value="All"> Temperaments </option>
 

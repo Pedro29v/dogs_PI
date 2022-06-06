@@ -105,7 +105,7 @@ router.get('/home', async(req, res, next) => {
      let dogiBDNuevo = []
      let dogiBD = await Dog.findAll({include:Temperament});
      for(i=0; i<dogiBD.length; i++){
-   
+
        let doginho = {
         height:dogiBD[i].height,
         weight:dogiBD[i].weight,
@@ -146,50 +146,46 @@ router.get('/home', async(req, res, next) => {
     }
 });
 
-//Temperamentos-------------------------------------------------------------
-
-       (async function() {
-
-    try {
-        let dogs = (await axios(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`)).data;
-        let temps = [];
-        let aux = '';
-        let filtrado = [];
-
-        for(i=0; i < dogs.length; i++){
-
-            if(dogs[i].temperament){
-
-                let arr = {
-                    temperament: dogs[i].temperament
-                }
-                aux = arr.temperament.split(', ')
-                temps.push(aux)
-            }     
-        }
-
-        temps.forEach(e => {
-                e.forEach(t => {
-                    filtrado.push(t)
-                })     
-            })
-        let filtradoEnd = [...new Set(filtrado)];
-
-         filtradoEnd.forEach(async e => {
-
-          await  Temperament.create({
-                temperament:e
-            })     
-        })
-        
-    } catch (error) {
-        next(error)   
-    }
-})()
+//RUTA DE LOS TEMPERAMETNOS----------------------------------------------------------------
 
 router.get('/home/temperament', async (req,res,next) => {
 
 try {
+
+    let dogs = (await axios(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`)).data;
+    let temps = [];
+    let aux = '';
+    let filtrado = [];
+
+    for(i=0; i < dogs.length; i++){
+
+        if(dogs[i].temperament){
+
+            let arr = {
+                temperament: dogs[i].temperament
+            }
+            aux = arr.temperament.split(', ')
+            temps.push(aux)
+        }     
+    }
+
+    temps.forEach(e => {
+        e.forEach(t => {
+            filtrado.push(t)
+        })     
+    })
+ 
+    let filtradoEnd = [...new Set(filtrado)];
+
+    filtradoEnd.forEach(async e => {
+
+     await Temperament.findOrCreate({
+        where: {temperament: e},
+              
+          })     
+      })
+    
+    /* LLAMADA A LA BASE DE DATOS PARA TRAER LOS TEMPERAENTOS --------------------------------- */
 
         let temp = await Temperament.findAll({
             attributes:['id','temperament'],

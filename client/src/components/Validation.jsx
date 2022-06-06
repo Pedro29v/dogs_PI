@@ -5,69 +5,69 @@ export function Validation(input){
 
     if(!input.name) errors.name ="Name is required";
 
-    if(input.name.search(/^[a-zA-Z\s]*$/) )errors.name ="No numbers or symbols are allowed in the name "
+    if(input.name.search(/^[a-zA-Z\s]*$/) )errors.name ="Invalid format"
 
     //INPUT MIN HEIGHT
     
-    if(input.heightMin.search(/^[0-9]{1,5}$/) )errors.heightMin = "Write up to 5 characters that must be numeric"
+    if(input.heightMin.search(/^[0-9]{1,5}$/) )errors.heightMin = "Invalid format"
 
     if(!input.heightMin) errors.heightMin = "Minimum height is required"
 
-    if(parseInt(input.heightMin) > parseInt(input.heightMax))errors.heightMin = "The minimum height cannot be greater than the maximum height";
+    if(parseInt(input.heightMin) > parseInt(input.heightMax))errors.heightMin = "Invalid format";
     
-    if(input.heightMin < 0) errors.heightMin = "Negative numbers are not allowed"
+    if(input.heightMin < 0) errors.heightMin = "Invalid format"
 
 
     //INPUT MAX HEIGHT
 
-    if(input.heightMax.search(/^[0-9]{1,5}$/) )errors.heightMax = "Write up to 5 characters that must be numeric"
+    if(input.heightMax.search(/^[0-9]{1,5}$/) )errors.heightMax = "WInvalid format"
 
     if(!input.heightMax) errors.heightMax = "Minimum height is required"
 
-    if(parseInt(input.heightMax) < parseInt(input.heightMin))errors.heightMax = "The minimum height cannot be greater than the maximum height";
+    if(parseInt(input.heightMax) < parseInt(input.heightMin))errors.heightMax = "Invalid format";
     
-    if(input.heightMax < 0) errors.heightMax = "Negative numbers are not allowed"
+    if(input.heightMax < 0) errors.heightMax = "Invalid format"
 
     //INPUT MIN WEIGHT
 
-    if(input.weightMin.search(/^[0-9]{1,5}$/) )errors.weightMin = "Write up to 5 characters that must be numeric"
+    if(input.weightMin.search(/^[0-9]{1,5}$/) )errors.weightMin = "Invalid format"
 
     if(!input.weightMin) errors.weightMin = "Minimum height is required"
 
-    if(parseInt(input.weightMin) > parseInt(input.weightMax))errors.weightMin = "The minimum height cannot be greater than the maximum height";
+    if(parseInt(input.weightMin) > parseInt(input.weightMax))errors.weightMin = "Invalid format";
     
-    if(input.weightMin < 0) errors.weightMin = "Negative numbers are not allowed" 
+    if(input.weightMin < 0) errors.weightMin = "Invalid format" 
 
 
     //INPUT MAX wEIGHT
 
-    if(input.weightMax.search(/^[0-9]{1,5}$/) )errors.weightMax = "Write up to 5 characters that must be numeric"
+    if(input.weightMax.search(/^[0-9]{1,5}$/) )errors.weightMax = "Invalid format"
 
     if(!input.weightMax) errors.weightMax = "Minimum height is required"
 
-    if(parseInt(input.weightMax) < parseInt(input.weightMin))errors.weightMax = "The minimum height cannot be greater than the maximum height";
+    if(parseInt(input.weightMax) < parseInt(input.weightMin))errors.weightMax = "Invalid format";
     
-    if(input.weightMax < 0) errors.weightMax = "Negative numbers are not allowed"
+    if(input.weightMax < 0) errors.weightMax = "Invalid format"
 
     //INPUT MIN LIFE SPAN
 
-    if(input.life_span_min.search(/^[0-9]{1,5}$/) )errors.life_span_min = "Write up to 5 characters that must be numeric"
+    if(input.life_span_min.search(/^[0-9]{1,5}$/) )errors.life_span_min = "Invalid format"
 
     if(!input.life_span_min) errors.life_span_min = "Minimum height is required"
 
-    if(parseInt(input.life_span_min) > parseInt(input.life_span_max))errors.life_span_min = "The minimum height cannot be greater than the maximum height";
+    if(parseInt(input.life_span_min) > parseInt(input.life_span_max))errors.life_span_min = "Invalid format";
     
-    if(input.life_span_min < 0) errors.life_span_min = "Negative numbers are not allowed" 
+    if(input.life_span_min < 0) errors.life_span_min = "Invalid format" 
 
     //INPUT MAX LIFE SPAN
 
-    if(input.life_span_max.search(/^[0-9]{1,5}$/) )errors.life_span_max = "Write up to 5 characters that must be numeric"
+    if(input.life_span_max.search(/^[0-9]{1,5}$/) )errors.life_span_max = "Invalid format"
 
     if(!input.life_span_max) errors.life_span_max = "Minimum height is required"
 
-    if(parseInt(input.life_span_max) < parseInt(input.life_span_min))errors.life_span_max = "The minimum height cannot be greater than the maximum height";
+    if(parseInt(input.life_span_max) < parseInt(input.life_span_min))errors.life_span_max = "Invalid format";
     
-    if(input.life_span_max < 0) errors.life_span_max = "Negative numbers are not allowed"
+    if(input.life_span_max < 0) errors.life_span_max = "Invalid format"
 
     //INPUT IMAGE URL
 

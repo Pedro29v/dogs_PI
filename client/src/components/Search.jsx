@@ -1,6 +1,8 @@
 import React,{useState,useEffect} from 'react';
+import {Link} from 'react-router-dom';
 import { useDispatch} from 'react-redux';
 import {filterByName} from '../redux/actions/actions'
+import './navBar.css'
 
 function Search({set}) {
 
@@ -35,11 +37,13 @@ const handleSubmit = (e) => {
 }
 
   return (
-    <div>
-        <form onSubmit={handleSubmit}>
-            <input type='search' value={nameDogy} placeholder='Search Breed' onChange={handleChange}/>
-            <input type='submit' value={button} />
+    <div className='container-nav'>
+      <Link to='/'><button className='btn-nav'>Out</button></Link> <br/>
+        <form onSubmit={handleSubmit} className='form-search'>
+            <input className='input-search' type='search' value={nameDogy} placeholder='Search Breed' onChange={handleChange}/>
+            <input className='btn-search' type='submit' value={button} />
         </form>
+      <Link to='/dog'><button className='btn-nav'>Create Dog</button></Link>
     </div>
   )
 }

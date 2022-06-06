@@ -46,13 +46,10 @@ const rootReducer = (state = initialState, action) => {
         dogs: [...state.dogs].sort((a, b) => (a.name> b.name ? 1 : -1)),
         }
 
-    case 'SORT_WEIGHT':
-      
-      if(action.payload === 'min'){
+    case 'SORT_WEIGHT_MIN':
         return{
          ...state, 
-          dogs: [...state.dogs].sort((a, b) => {
-
+          dogs: [...state.allDogys].sort((a, b) => {
 
             let weightA= parseInt(a.weight.split('-')[0]) 
             let weightB= parseInt(b.weight.split('-')[0]) 
@@ -62,10 +59,11 @@ const rootReducer = (state = initialState, action) => {
             else return 0;   
         })
       }
-    }
-    if(action.payload === 'max'){
+
+    case 'SORT_WEIGHT_MAX':
       return{
-        dogs: [...state.dogs].sort((a, b) =>{
+        ...state,
+        dogs: [...state.allDogys].sort((a, b) =>{
           let weightA= parseInt(a.weight.split('-')[0]);
           let weightB= parseInt(b.weight.split('-')[0]);
 
@@ -74,8 +72,7 @@ const rootReducer = (state = initialState, action) => {
           else return 0;   
         })
       }
-    }
-    break;
+
 
   case'DOG_API':
     return{

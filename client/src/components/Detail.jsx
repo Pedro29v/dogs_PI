@@ -10,7 +10,6 @@ const Detail = (props) => {
     const {id,name,height,weight,life_span,temperament,image} = useSelector(state => state.dogDetail)
 
     useEffect(()=>{
-
         dispatch( getDogyDetail(ID))
         dispatch(resetState(resetState))
     },[dispatch,ID])

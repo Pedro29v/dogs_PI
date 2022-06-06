@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link,useHistory } from 'react-router-dom';
 import { getTemperaments,postDogs } from "../redux/actions/actions";
 import {Validation} from './Validation.jsx'
+import './createDog.css'
 
 function CreateDog() {
 
@@ -26,7 +27,16 @@ function CreateDog() {
     temperament:[]
   })
 
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState({
+    name:'Type a Name',
+    heightMin:'Type a minimum height',
+    heightMax:'Type a maximum height',
+    weightMin:'Type a minimum weight',
+    weightMax:'Type a maximum weight',
+    life_span_min:'Type a minimum life expectancy',
+    life_span_max:'Type a maximum life expectancy',
+    image:'Type a URL',
+  });
 
   const handleChange = (e) => {
     setInput({
@@ -79,45 +89,95 @@ function CreateDog() {
   }
 
   return (
-    <div>
-      <Link to={'/home'}><button>Back To Home</button></Link>
-      <h2>Create a breed of dogs</h2>
+    
+    <div className="div-total">
+
+    <div className="div-btn">
+      <Link to={'/home'}><button className="btn-backToHome">Back</button></Link>
+    </div>
+
+    <div className="form-name">
+    <h2>Create a breed of dogs</h2>
+    </div>
+
+
+    <div className="div-form">
 
     <form onSubmit={handleSubmit}>
-      <input type='text'   onChange={(e) => handleChange(e)} name='name' value={input.name}   placeholder='type a name' />
+
+    <div>
+      <input type='text'   onChange={(e) => handleChange(e)} name='name' value={input.name} />
+    </div>
+
+    <div className="div-err">
       <strong>{errors.name}</strong>
+    </div>
 
-      <input type='number' onChange={handleChange} name='heightMin' value={input.heightMin} placeholder='type a minimum height' />
-      <strong>{errors.heightMin}</strong>
+    <div>
+      <input type='number' onChange={handleChange} name='heightMin' value={input.heightMin}  />
+    </div>
+    <div className="div-err">
+      <strong>{errors.heightMin}</strong> 
+    </div>
 
-      <input type='number' onChange={handleChange} name='heightMax' value={input.heightMax} placeholder='type a maximum height' />
-      <strong>{errors.heightMax}</strong>
+    <div>
+      <input type='number' onChange={handleChange} name='heightMax' value={input.heightMax} />
+    </div>
+    <div className="div-err">
+      <strong>{errors.heightMax}</strong>      
+    </div>
 
-      <input type='number' onChange={handleChange} name='weightMin' value={input.weightMin} placeholder='type a minimum weight' />
-      <strong>{errors.weightMin}</strong>
+    <div>
+      <input type='number' onChange={handleChange} name='weightMin' value={input.weightMin}  />
+    </div>
+    <div className="div-err">
+      <strong>{errors.weightMin}</strong> 
+    </div>
 
-      <input type='number' onChange={handleChange} name='weightMax' value={input.weightMax} placeholder='type a maximum weight' />
-      <strong>{errors.weightMax}</strong>
+    <div>
+      <input type='number' onChange={handleChange} name='weightMax' value={input.weightMax} />
+    </div>
+    <div className="div-err">
+      <strong>{errors.weightMax}</strong>    
+    </div>
 
-      <input type='number' onChange={handleChange} name='life_span_min' value={input.life_span_min} placeholder='type a minimum life expectancy' />
-      <strong>{errors.life_span_min}</strong>
+    <div>
+      <input type='number' onChange={handleChange} name='life_span_min' value={input.life_span_min} />
+    </div>
+    <div className="div-err">
+      <strong>{errors.life_span_min}</strong>     
+    </div>
 
-      <input type='number' onChange={handleChange} name='life_span_max' value={input.life_span_max} placeholder='type a maximum life expectancy' />
+    <div>
+      <input type='number' onChange={handleChange} name='life_span_max' value={input.life_span_max} />
+    </div>
+    <div className="div-err">
       <strong>{errors.life_span_max}</strong>
+    </div>
 
-      <input type='text'   onChange={handleChange} name='image' value={input.image} placeholder='type a URL' />
-      <strong>{errors.image}</strong>
+    <div>
+      <input type='text'   onChange={handleChange} name='image' value={input.image} />
+    </div>
+    <div className="div-err">
+      <strong>{errors.image}</strong>    
+    </div>
 
+    <div>
       <select onChange={handleSelect}>
-            <option > Temperaments </option>
-            {temperaments?.map(e => (
-                <option key={e.id} value={e.temperament}> {e.temperament} </option>
-            ))}
-      </select> <br></br>
-      <span>{input.temperament.map(t => t + ', ')}</span> <br></br>
+        <option > Temperaments </option>
+          {temperaments?.map(e => (
+        <option key={e.id} value={e.temperament}> {e.temperament} </option>
+              ))}
+        </select> <br></br>
+        <span>{input.temperament.map(t => t + ', ')}</span> 
+    </div>
 
+  <div>
     <input type='submit' value='Send' />
+  </div>
+
     </form>
+  </div>
 
     </div>
   )

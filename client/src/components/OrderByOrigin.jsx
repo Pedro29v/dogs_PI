@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch} from 'react-redux';
 import {dogDB,dogAPI,getAllDogs} from '../redux/actions/actions'
+import './select.css'
 
 function OrderByOrigin({set}) {
     const dispatch = useDispatch();
@@ -22,7 +23,7 @@ function OrderByOrigin({set}) {
     }
 
   return (
-    <div>
+    <div className='container-select'>
         <select onChange={handlerOrigin}>
             <option value='all'>Order By Origin</option>
             <option value='api'> Dogs From Api  </option>

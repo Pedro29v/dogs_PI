@@ -14,7 +14,7 @@ function OrderAlf() {
     }
 
   return (
-    <div>
+    <div className='container-select'>
       <select  onChange={e=> handleOrdenar(e)}>
         <option value='order'>Order By Alphabetically</option>
         <option value='asc'> A a Z  </option>

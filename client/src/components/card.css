@@ -1,0 +1,40 @@
+.card{
+    background-color:var(--primary-color);
+    width:40%;
+    height: 500px;
+    color:var(--secondary-color);
+    text-align: center;
+    margin: 5px;
+    margin-bottom: 2rem;
+    border-radius: 10px ;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    overflow: hidden;
+}
+
+.div-info{
+    display: flex;
+    flex-direction: column;
+    width:70%;
+    height: 55px;
+    background-color:var(--tertiary-color);
+    border-radius: 39% 36% 10% 10% / 40% 40% 0% 0%;
+    padding: 1rem;
+    margin-left: 15%;
+}
+
+.div-info:hover{
+    cursor: pointer;
+    height: auto;
+}
+
+h3{
+    color:var(--secondary-color);
+    font-size: 1.5em;
+    margin-bottom: 5px;
+}
+
+p{
+    margin-bottom: 3px;
+}

@@ -54,9 +54,16 @@ export const getDogyDetail = (id) => {
     }
 }
 
-export const sortWeight = (payload) => {
+export const sortWeightMin = (payload) => {
     return {
-        type:"SORT_WEIGHT",
+        type:"SORT_WEIGHT_MIN",
+        payload,
+    }
+}
+
+export const sortWeightMax = (payload) => {
+    return {
+        type:"SORT_WEIGHT_MAX",
         payload,
     }
 }

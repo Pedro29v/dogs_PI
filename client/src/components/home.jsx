@@ -7,6 +7,7 @@ import Search from './Search';
 import Card from './Card'
 import OrderByOrigin from './OrderByOrigin';
 import FilterTemp from './FilterTemp';
+import './home.css';
 
 
 function Home() {
@@ -38,32 +39,41 @@ useEffect(() => {
 
 
   return (
-    <div>
-      <h1>ESTAS EN HOME</h1>
 
-      <Search set={setCurrentpage} />
-      <OrderAlf />
-      <OrderByOrigin set={setCurrentpage}/>
-      <FilterTemp />
-      <OrderByWeight set={setCurrentpage}/>
-      <button onClick={() => prev()} >Prev </button>
-      <span>{currentPage +' de '+ pageLimit}</span>
-      <button onClick={() => next()} >Next </button>
+    <div className='wrapper-home'>
+    
+          <Search set={setCurrentpage} />
 
-     {
+      <div className='filters'>
+          <OrderAlf />
+          <OrderByOrigin set={setCurrentpage}/>
+          <FilterTemp />
+          <OrderByWeight set={setCurrentpage}/>
+      </div>
+
+  <div className='cards'>
+    {
       currentDogy.map(e => (
-          <Card key={e.id} 
-           id={e.id}
-           name={e.name}
-           weight={e.weight}
-           temperament={e.temperament}
-           image={e.image }
-          />
-       ))
-     }
-      
-     
-    </div>
+        <Card key={e.id} 
+          id={e.id}
+          name={e.name}
+          weight={e.weight}
+          temperament={e.temperament}
+          image={e.image }
+        />
+        ))
+    }
+  </div>
+
+  <div className='pagination'>
+    <button className='btn-pagination-left' onClick={() => prev()} >Prev </button>   
+        <span>{currentPage +' de '+ pageLimit}</span>
+      <button className='btn-pagination-right' onClick={() => next()} >Next </button>
+  </div>
+  
+  </div>
+
+
   )
 }
 
