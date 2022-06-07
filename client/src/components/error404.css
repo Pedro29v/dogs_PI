@@ -1,0 +1,19 @@
+.error-message{
+    text-align: center;
+    width: 100vw;
+    height: 20vh;
+    padding-top: 2rem;
+}
+
+.strong{
+    font-size: 1.8em;
+    font-weight: bold;
+}
+
+.error-img{
+    background-color: blue;
+    margin: auto;
+    width: 50vw;
+    height: 700px;
+    background: url(../img/beto.png) no-repeat center center/contain;
+}

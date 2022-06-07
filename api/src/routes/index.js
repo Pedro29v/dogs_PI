@@ -11,7 +11,7 @@ const router = Router();
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
-//Creacion de las razas-------------------------------------------------------
+//Creacion de las razas------------------------------------------------------
 
 router.post('/dog', async (req, res, next) => {
 

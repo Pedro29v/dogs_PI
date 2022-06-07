@@ -1,4 +1,4 @@
-import React,{useState,useEffect} from 'react';
+import React,{useState} from 'react';
 import {Link} from 'react-router-dom';
 import { useDispatch} from 'react-redux';
 import {filterByName} from '../redux/actions/actions'
@@ -20,13 +20,6 @@ if(nameDogy!==''){
 }else{
     button = 'Home';
 }
-
-/* useEffect(()=>{
-
-    dispatch( filterByName(nameDogy))
-    set(1)
-
-},[dispatch,nameDogy,set]) */
 
 const handleSubmit = (e) => {
     e.preventDefault()

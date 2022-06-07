@@ -22,7 +22,7 @@ export function Validation(input){
 
     if(input.heightMax.search(/^[0-9]{1,5}$/) )errors.heightMax = "WInvalid format"
 
-    if(!input.heightMax) errors.heightMax = "Minimum height is required"
+    if(!input.heightMax) errors.heightMax = "Maximun height is required"
 
     if(parseInt(input.heightMax) < parseInt(input.heightMin))errors.heightMax = "Invalid format";
     
@@ -32,7 +32,7 @@ export function Validation(input){
 
     if(input.weightMin.search(/^[0-9]{1,5}$/) )errors.weightMin = "Invalid format"
 
-    if(!input.weightMin) errors.weightMin = "Minimum height is required"
+    if(!input.weightMin) errors.weightMin = "Minimum weight is required"
 
     if(parseInt(input.weightMin) > parseInt(input.weightMax))errors.weightMin = "Invalid format";
     
@@ -43,7 +43,7 @@ export function Validation(input){
 
     if(input.weightMax.search(/^[0-9]{1,5}$/) )errors.weightMax = "Invalid format"
 
-    if(!input.weightMax) errors.weightMax = "Minimum height is required"
+    if(!input.weightMax) errors.weightMax = "Maximun weight is required"
 
     if(parseInt(input.weightMax) < parseInt(input.weightMin))errors.weightMax = "Invalid format";
     
@@ -53,7 +53,7 @@ export function Validation(input){
 
     if(input.life_span_min.search(/^[0-9]{1,5}$/) )errors.life_span_min = "Invalid format"
 
-    if(!input.life_span_min) errors.life_span_min = "Minimum height is required"
+    if(!input.life_span_min) errors.life_span_min = "This field is required"
 
     if(parseInt(input.life_span_min) > parseInt(input.life_span_max))errors.life_span_min = "Invalid format";
     
@@ -63,7 +63,7 @@ export function Validation(input){
 
     if(input.life_span_max.search(/^[0-9]{1,5}$/) )errors.life_span_max = "Invalid format"
 
-    if(!input.life_span_max) errors.life_span_max = "Minimum height is required"
+    if(!input.life_span_max) errors.life_span_max = "This field is required"
 
     if(parseInt(input.life_span_max) < parseInt(input.life_span_min))errors.life_span_max = "Invalid format";
     

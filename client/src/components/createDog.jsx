@@ -100,69 +100,7 @@ function CreateDog() {
     <h2>Create a breed of dogs</h2>
     </div>
 
-
-    <div className="div-form">
-
-    <form onSubmit={handleSubmit}>
-
-    <div>
-      <input type='text'   onChange={(e) => handleChange(e)} name='name' value={input.name} />
-    </div>
-
-    <div className="div-err">
-      <strong>{errors.name}</strong>
-    </div>
-
-    <div>
-      <input type='number' onChange={handleChange} name='heightMin' value={input.heightMin}  />
-    </div>
-    <div className="div-err">
-      <strong>{errors.heightMin}</strong> 
-    </div>
-
-    <div>
-      <input type='number' onChange={handleChange} name='heightMax' value={input.heightMax} />
-    </div>
-    <div className="div-err">
-      <strong>{errors.heightMax}</strong>      
-    </div>
-
-    <div>
-      <input type='number' onChange={handleChange} name='weightMin' value={input.weightMin}  />
-    </div>
-    <div className="div-err">
-      <strong>{errors.weightMin}</strong> 
-    </div>
-
-    <div>
-      <input type='number' onChange={handleChange} name='weightMax' value={input.weightMax} />
-    </div>
-    <div className="div-err">
-      <strong>{errors.weightMax}</strong>    
-    </div>
-
-    <div>
-      <input type='number' onChange={handleChange} name='life_span_min' value={input.life_span_min} />
-    </div>
-    <div className="div-err">
-      <strong>{errors.life_span_min}</strong>     
-    </div>
-
-    <div>
-      <input type='number' onChange={handleChange} name='life_span_max' value={input.life_span_max} />
-    </div>
-    <div className="div-err">
-      <strong>{errors.life_span_max}</strong>
-    </div>
-
-    <div>
-      <input type='text'   onChange={handleChange} name='image' value={input.image} />
-    </div>
-    <div className="div-err">
-      <strong>{errors.image}</strong>    
-    </div>
-
-    <div>
+    <div className="div-select">
       <select onChange={handleSelect}>
         <option > Temperaments </option>
           {temperaments?.map(e => (
@@ -172,9 +110,71 @@ function CreateDog() {
         <span>{input.temperament.map(t => t + ', ')}</span> 
     </div>
 
-  <div>
-    <input type='submit' value='Send' />
-  </div>
+
+    <div className="div-form">
+
+    <form onSubmit={handleSubmit}>
+
+    <div>
+      <input type='text'   onChange={(e) => handleChange(e)} name='name' value={input.name} placeholder='Type a name' />
+    </div>
+
+    <div className="div-err">
+      <strong>{errors.name}</strong>
+    </div>
+
+    <div>
+      <input type='number' onChange={handleChange} name='heightMin' value={input.heightMin} placeholder='Type a minimum height'/>
+    </div>
+    <div className="div-err">
+      <strong>{errors.heightMin}</strong> 
+    </div>
+
+    <div>
+      <input type='number' onChange={handleChange} name='heightMax' value={input.heightMax} placeholder='Type a maximun height'/>
+    </div>
+    <div className="div-err">
+      <strong>{errors.heightMax}</strong>      
+    </div>
+
+    <div>
+      <input type='number' onChange={handleChange} name='weightMin' value={input.weightMin}  placeholder='Type a minimum weight'/>
+    </div>
+    <div className="div-err">
+      <strong>{errors.weightMin}</strong> 
+    </div>
+
+    <div>
+      <input type='number' onChange={handleChange} name='weightMax' value={input.weightMax} placeholder='Type a maximun weight'/>
+    </div>
+    <div className="div-err">
+      <strong>{errors.weightMax}</strong>    
+    </div>
+
+    <div>
+      <input type='number' onChange={handleChange} name='life_span_min' value={input.life_span_min} placeholder='Type a minimum life expectancy'/>
+    </div>
+    <div className="div-err">
+      <strong>{errors.life_span_min}</strong>     
+    </div>
+
+    <div>
+      <input type='number' onChange={handleChange} name='life_span_max' value={input.life_span_max} placeholder='Type a maximun life expectancy'/>
+    </div>
+    <div className="div-err">
+      <strong>{errors.life_span_max}</strong>
+    </div>
+
+    <div>
+      <input type='text'   onChange={handleChange} name='image' value={input.image} placeholder='Type a URL'/>
+    </div>
+    <div className="div-err">
+      <strong>{errors.image}</strong>    
+    </div>
+
+    <div >
+    <input className="btn-submit" type='submit' value='Send' />
+    </div>
 
     </form>
   </div>

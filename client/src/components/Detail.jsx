@@ -2,6 +2,7 @@ import React,{useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector} from 'react-redux';
 import {getDogyDetail,resetState} from '../redux/actions/actions.js';
+import './detail.css'
 
 const Detail = (props) => {
 
@@ -15,14 +16,28 @@ const Detail = (props) => {
     },[dispatch,ID])
 
   return (
-    <div key={id}>
-      <Link to={`/home`}><button>Close</button></Link>
-      <p>Name: {name}</p>
-      <p>Height: {height}</p>
-      <p>Weight: {weight}</p>
-      <p>Life Span: {life_span}</p>
-      <p>Temperament: {temperament}</p>
-      <img src={image} alt={name}></img>
+    <div  key={id}>
+
+    <div className='div-btn'>
+      <Link to={`/home`}><button className='btn-backToHome'>Back</button></Link>
+    </div>
+
+    <div className='div-all'>
+
+      <div className='div-detail'>
+        <p>Name: {name}</p>
+        <p>Height: {height}</p>
+        <p>Weight: {weight}</p>
+        <p>Life Span: {life_span}</p>
+        <p>Temperament: {temperament}</p>  
+      </div>
+
+      <div className='img-detail'>
+        <img src={image} alt={name}></img>
+      </div>
+
+    </div>
+
     </div>
   )
 }
