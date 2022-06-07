@@ -62,7 +62,7 @@ useEffect(() => {
           image={e.image }
         />
         ))
-    }
+    } 
   </div>
 
   <div className='pagination'>
