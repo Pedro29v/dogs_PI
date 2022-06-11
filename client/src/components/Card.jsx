@@ -22,7 +22,7 @@ function Card({id,name,weight,temperament,image}) {
            </div>
 
           <div >
-            <p>weight: {weight}</p>
+            <p>weight: {weight} kg</p>
             <p>Temperament: {temperament}</p>
           </div>
 

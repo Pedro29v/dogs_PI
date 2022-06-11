@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getTemperaments, filterTemperament } from "../redux/actions/actions";
 import './select.css'
 
-function FilterTemp() {
+function FilterTemp({set}) {
 
     const dispatch = useDispatch();
     const temperaments= useSelector(state => state.temperaments )
@@ -14,6 +14,7 @@ function FilterTemp() {
     
     const handleFilterTemperaments=(e)=>{
       dispatch(filterTemperament(e.target.value))
+      set(1)
     }
 
   return (

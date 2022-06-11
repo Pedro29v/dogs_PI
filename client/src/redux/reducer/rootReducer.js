@@ -105,9 +105,9 @@ const rootReducer = (state = initialState, action) => {
       })
       return{
           ...state,
-          dogs: filterTemperament,
+          dogs: filterTemperament
       }
-  
+
     default: return initialState
   }
 

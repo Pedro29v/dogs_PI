@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React from 'react';
 import { useDispatch} from 'react-redux';
 import {sortWeightMin,sortWeightMax, getAllDogs} from '../redux/actions/actions'
 import './select.css'

@@ -15,11 +15,12 @@ function Home() {
   const dispatch = useDispatch(); 
   const dogys = useSelector(state => state.dogs);
   let [currentPage, setCurrentpage] = useState(1);
-  let [dogsForPage] = useState(8);
+  let [dogsForPage] = useState(9);
   const lastDogy = currentPage * dogsForPage;
   const firstDogy = lastDogy - dogsForPage;
   const currentDogy =  dogys.slice(firstDogy, lastDogy);
   const pageLimit = Math.ceil(dogys.length/dogsForPage);
+  
   const prev = () => {
     if(currentPage !== 1){
     setCurrentpage(currentPage - 1)
@@ -47,7 +48,7 @@ useEffect(() => {
       <div className='filters'>
           <OrderAlf />
           <OrderByOrigin set={setCurrentpage}/>
-          <FilterTemp />
+          <FilterTemp set={setCurrentpage} />
           <OrderByWeight set={setCurrentpage}/>
       </div>
 

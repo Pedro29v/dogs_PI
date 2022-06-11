@@ -1,6 +1,6 @@
 .card{
     background-color:var(--primary-color);
-    width:40%;
+    width:30vw;
     height: 500px;
     color:var(--secondary-color);
     text-align: center;
@@ -11,6 +11,10 @@
     flex-direction: column;
     justify-content: end;
     overflow: hidden;
+}
+
+.card:hover{
+    box-shadow: 1px 1px 10px 3px var(--primary-color);
 }
 
 .div-info{

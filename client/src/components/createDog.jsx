@@ -70,7 +70,6 @@ function CreateDog() {
     if(input.name !== ''){
 
       dispatch(postDogs(input))
-      history.push('/home')
       setInput({
         name:'',
         heightMin:'',
@@ -82,6 +81,7 @@ function CreateDog() {
         image:'',
         temperament:[]
       })
+      history.push('/home')
     }
     else{
       alert('Name is required')

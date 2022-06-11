@@ -1,19 +1,30 @@
 import React,{useEffect} from 'react';
-import { Link } from 'react-router-dom';
+import { Link,useHistory } from 'react-router-dom';
 import { useDispatch, useSelector} from 'react-redux';
-import {getDogyDetail,resetState} from '../redux/actions/actions.js';
+import {getDogyDetail,resetState,deleteDogy} from '../redux/actions/actions.js';
 import './detail.css'
 
 const Detail = (props) => {
 
     const ID = props.match.params.id;
     const dispatch = useDispatch();
+    const history = useHistory()
     const {id,name,height,weight,life_span,temperament,image} = useSelector(state => state.dogDetail)
 
     useEffect(()=>{
         dispatch( getDogyDetail(ID))
+      return () => {
         dispatch(resetState(resetState))
+      }
     },[dispatch,ID])
+
+   const deleteDog = (e) => {
+      dispatch(deleteDogy(e.target.name))
+      history.push('/home')
+   }
+
+
+   console.log(ID.length)
 
   return (
     <div  key={id}>
@@ -25,10 +36,11 @@ const Detail = (props) => {
     <div className='div-all'>
 
       <div className='div-detail'>
+      {(ID.length > 4)? <input className='btn-delete' type='button' value="Delete" name={id} onClick={deleteDog} /> : null}
         <p>Name: {name}</p>
-        <p>Height: {height}</p>
-        <p>Weight: {weight}</p>
-        <p>Life Span: {life_span}</p>
+        <p>Height: {height} cm</p>
+        <p>Weight: {weight} kg</p>
+        <p>Life Span: {life_span} years</p>
         <p>Temperament: {temperament}</p>  
       </div>
 

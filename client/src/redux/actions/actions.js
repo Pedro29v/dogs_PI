@@ -3,12 +3,10 @@ import axios from 'axios'
   export function getAllDogs(){
 
     return async function(dispatch){
-        var json = await axios.get('http://localhost:3001/home');
 
-        return dispatch({
-            type:'GET_All_DOGS',
-            payload: json.data,
-        })
+        return axios.get('http://localhost:3001/home')
+        .then(res => dispatch({type:'GET_All_DOGS', payload:res.data }))
+
     }
 }
 
@@ -85,12 +83,9 @@ export const dogDB = (payload) => {
 export const getTemperaments = () => {
 
     return async function (dispatch){
-        var json = await axios.get("http://localhost:3001/home/temperament");
+        return axios.get("http://localhost:3001/home/temperament")
+        .then(res => dispatch({type:"GET_TEMPERAMENTS", payload:res.data}))
 
-        return dispatch({
-            type:"GET_TEMPERAMENTS",
-            payload: json.data,
-        })
     }
 }
 
@@ -105,8 +100,20 @@ export function postDogs(payload){
     return async function(){
         try{
             const createDogy = await axios.post('http://localhost:3001/dog',payload);
-            alert('Breed of Dog successfully created')
+            alert(createDogy.data.data)
             return createDogy;
+        }catch (error) {
+            let err = error.response.data
+            return alert(err)
+        }
+    }
+}
+
+export function deleteDogy(id){
+    return async function(){
+        try{
+            const deleteDogynho = await axios.delete(`http://localhost:3001/home/delete/${id}`);
+            alert(deleteDogynho.data.data)
         }catch (error) {
             let err = error.response.data
             return alert(err)
